@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Articles</h3>
+<hr>
+
+
+
+{% if articles %}
+
+
+
+{% for article in articles %}
+<div class="row">
+
+      <!-- Post Content Column -->
+    <div class="col-lg-8">
+
+        <!-- Title -->
+        <a href="{% url 'article:detail' article.id %}"><h3 class="mt-4">{{article.title}}</h3></a>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          {{article.author.username}} 
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{article.created_date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        {% if article.article_image %}
+        <img class="img-fluid rounded" src="{{article.article_image.url}}" alt="">
+        
+        {% endif %}
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">
+            {{article.content|safe|truncatewords:40}}
+        
+        </p>
+
+        <a style ="float : right" href="{% url 'article:detail' article.id %}" class = "btn btn-danger">Read More</a>
+
+        <hr>
+
+
+        
+    
+    </div>
+</div>
+
+
+
+
+
+{% endfor %}
+
+    
+{% else %}
+
+<div class = "alert alert-danger">
+    There is no article!
+</div>
+
+{% endif %}
+
+{% endblock %}

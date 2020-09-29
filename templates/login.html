@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+  <h3>Login</h3>
+    <hr>
+    <form method = "post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <button type = "submit" class = "btn btn-danger">Login</button>
+    </form>
+    <a href="{% url 'user:register'  %}"><h5 class="mt-4">Haven't you registered yet?</h5></a>
+    <hr>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
